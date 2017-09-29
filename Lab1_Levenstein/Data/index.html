@@ -1,0 +1,31 @@
+<html>
+<head>
+    <title> Lab01: Levenstein distance </title>
+    <link href="./CSS/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="inputContainer">
+        Levenstein Distance
+        <form class="inputForm">
+            <label>Word A: </label><input type="text" id="wordA" value="">
+            <label>Word B: </label><input type="text" id="wordB" value="">
+            <input type="button" id="button" value="Levenstein Go!" style="margin-top: 5px;">
+        </form>
+
+        <div class="inputForm">
+            <div id="levensteinResult">Levenstein distance: </div>
+            <div id="levensteinRecursiveResult">Levenstein recursive distance: </div>
+        </div>
+
+        <div class="inputForm">
+            <div>Levenstein Matrix: </div>
+            <div class="matrixHolder"></div>
+        </div>
+    </div>
+</body>
+
+<script src="./Services/fetches.js"></script>
+<script src="./main.js"></script>
+
+</html>

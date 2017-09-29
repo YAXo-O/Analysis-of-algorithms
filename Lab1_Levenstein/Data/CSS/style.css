@@ -1,0 +1,50 @@
+body
+{
+    background-color: #41718d;
+    margin: 0px;
+}
+
+.inputContainer
+{
+    width: 50%;
+    margin: 5% auto auto auto;
+    background-color: #537c9b;
+    border: 2px solid #1d2d3b;
+    text-align: center;
+    color: #0b0e16;
+    font-size: 25px;
+    padding: 10px 10px 10px 10px;
+}
+
+.inputForm
+{
+    border: 1px solid #1d2d3b;
+    font-size: 15px;
+    width: 60%;
+    margin: 10px auto auto auto;
+    padding: 5px;
+    background-color: #2e445c;
+}
+
+.inputForm input
+{
+    background-color: #70a6cd;
+    border-width: 0px;
+}
+
+.matrixHolder
+{
+    margin: auto;
+}
+
+.table
+{
+    margin: auto;
+}
+
+.table td
+{
+    border: 1px solid #1d2d3b;
+    padding: 5px;
+    font-size: 15px;
+}
