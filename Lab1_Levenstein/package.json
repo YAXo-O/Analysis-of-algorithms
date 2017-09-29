@@ -1,0 +1,26 @@
+{
+  "name": "levenstein",
+  "version": "1.0.0",
+  "description": "Lab01 Analysis of algorithms, js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YAXo-O/Analysis-of-algorithms.git"
+  },
+  "keywords": [
+    "JS",
+    "Levenstein"
+  ],
+  "author": "YAX",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/YAXo-O/Analysis-of-algorithms/issues"
+  },
+  "homepage": "https://github.com/YAXo-O/Analysis-of-algorithms#readme",
+  "dependencies": {
+    "express": "^4.16.1"
+  }
+}
