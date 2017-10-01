@@ -6,7 +6,7 @@
 
 <body>
     <div class="inputContainer">
-        Levenstein Distance
+        <div>Levenstein Distance</div>
         <form class="inputForm">
             <label>Word A: </label><input type="text" id="wordA" value="">
             <label>Word B: </label><input type="text" id="wordB" value="">
@@ -14,13 +14,17 @@
         </form>
 
         <div class="inputForm">
-            <div id="levensteinResult">Levenstein distance: </div>
-            <div id="levensteinRecursiveResult">Levenstein recursive distance: </div>
+            <div>Levenstein distance: <span id="levensteinResult"></span></div>
+            <div>Levenstein recursive distance: <span id="levensteinRecursiveResult"></span></div>
         </div>
 
         <div class="inputForm">
-            <div>Levenstein Matrix: </div>
+            <div>Wagner-Fischer Matrix: </div>
             <div class="matrixHolder"></div>
+        </div>
+
+        <div class="inputForm">
+            <span>Conversion rule: <span id="rule"></span></span>
         </div>
     </div>
 </body>

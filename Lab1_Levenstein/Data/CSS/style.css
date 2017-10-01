@@ -30,6 +30,7 @@ body
 {
     background-color: #70a6cd;
     border-width: 0px;
+    text-align: center;
 }
 
 .matrixHolder
@@ -47,4 +48,33 @@ body
     border: 1px solid #1d2d3b;
     padding: 5px;
     font-size: 15px;
+    text-align: center;
+}
+
+.header
+{
+    border: 1px solid #3b1513;
+    padding: 5px;
+    font-size: 15px;
+    text-align: center;
+}
+
+.insert
+{
+    color: darkgreen;
+}
+
+.delete
+{
+    color: darkred;
+}
+
+.replace
+{
+    color: darkviolet;
+}
+
+.match
+{
+    color: #0b0e16;
 }
