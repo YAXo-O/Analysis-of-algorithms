@@ -86,13 +86,71 @@ function drawResult(data)
 
 function conversionRule(textA, textB, data)
 {
-    clearNode(ruleNode);
+    let x = textA.length + 1;
+    let y = textB.length + 1;
+    let i = x - 1;
+    let j = y - 1;
 
-    let i = textA.length + 1;
-    let j = textB.length + 1;
+    let ruleString = "";
 
+    while(i > 0 || j > 0)
+    {
+        console.log(i + ";" + j);
+        let diag = Infinity;
+        let left = Infinity;
+        let upper = Infinity;
+
+        debugger;
+        if(i > 0 && j > 0)
+            diag = data[(i-1) + (j-1)*x];
+        if(i > 0)
+            left = data[i-1 + j*x];
+        if(j > 0)
+            upper = data[i + (j-1)*x];
+
+        console.log(left + "; " + diag+ "; " + upper);
+
+        if(diag <= left && diag <= upper)
+        {
+            if(diag < data[i + j*x])
+                ruleString = 'I' + ruleString;
+            else
+                ruleString = 'M' + ruleString;
+            i--;j--;
+        }
+        else if(left <= diag && left <= upper)
+        {
+            ruleString = 'D' + ruleString;
+            i--;
+        }
+        else
+        {
+            ruleString = 'R' + ruleString;
+            j--;
+        }
+    }
+
+    drawConversionRule(ruleString)
 }
 
+function drawConversionRule(rule)
+{
+    clearNode(ruleNode);
+
+    for(let i = 0; i < rule.length; i++)
+    {
+        let elem = document.createElement("span");
+        elem.textContent = rule[i];
+        switch(rule[i])
+        {
+            case 'M': elem.className = "match"; break;
+            case 'R': elem.className = "replace"; break;
+            case 'I': elem.className = "insert"; break;
+            case 'D': elem.className = "delete"; break;
+        }
+        ruleNode.appendChild(elem);
+    }
+}
 
 function clearNode(node)
 {
