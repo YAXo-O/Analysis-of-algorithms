@@ -31,7 +31,6 @@ function damerauLevenstein(wordA, wordB)
                     D[i + j*x],
                     D[i-2 + (j-2)*x] + TRANSPOSITION_COST
                 );
-                console.log(i + "; " + j);
             }
 
         }

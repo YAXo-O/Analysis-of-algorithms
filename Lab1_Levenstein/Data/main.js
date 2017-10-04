@@ -31,6 +31,11 @@ actionButton.addEventListener("click", function()
     {
         drawDamerauResult(response.value);
     });
+    Http.FetchPost("/damerauLevensteinRecursive", arg)
+        .then((response) =>
+    {
+        damerauRecursiveResultField.innerHTML = response.value;
+    })
 });
 
 const resultField = document.getElementById("levensteinResult");
@@ -38,6 +43,7 @@ const recursiveResultField = document.getElementById("levensteinRecursiveResult"
 const ruleNode = document.getElementById("rule");
 const HEADER_COLOR = "#3b1513";
 const damerauResultField = document.getElementById("damerauLevensteinResult");
+const damerauRecursiveResultField = document.getElementById("damerauLevensteinRecursiveResult");
 
 function drawResult(data)
 {

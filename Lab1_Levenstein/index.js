@@ -5,6 +5,7 @@ const body = require("body-parser");
 const levenstein = require("./Modules/Levenstein.js");
 const levensteinRecursive = require("./Modules/LevensteinRecursive");
 const damerauLevenstein = require("./Modules/DamerauLevenstein");
+const damerauLevensteinRecursive = require("./Modules/DamerauLevensteinRecursive");
 
 // Basic Server Setup
 const DATA = path.resolve("./Data/");
@@ -46,6 +47,15 @@ app.post("/damerauLevenstein", function(req, res)
 
     res.status(201);
     res.json(damerauLevenstein.damerauLevenstein(wordA, wordB));
+});
+
+app.post("/damerauLevensteinRecursive", function(req, res)
+{
+    let wordA = req.body.wordA;
+    let wordB = req.body.wordB;
+
+    res.status(201);
+    res.json(damerauLevensteinRecursive.damerauLevenstein(wordA, wordB));
 });
 
 app.listen(PORT);
