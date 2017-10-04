@@ -3,7 +3,12 @@ const Http = fetches();
 const table = document.createElement("table");
 const matrixHolder = document.getElementsByClassName("matrixHolder")[0];
 matrixHolder.appendChild(table);
-table.className = "table"
+table.className = "table";
+
+const dtable = document.createElement("table");
+const dmatrixHolder = document.getElementsByClassName("matrixHolder")[1];
+dmatrixHolder.appendChild(dtable);
+dtable.className = "table";
 
 const actionButton = document.getElementById("button");
 actionButton.addEventListener("click", function()
@@ -21,12 +26,18 @@ actionButton.addEventListener("click", function()
     {
         recursiveResultField.innerHTML = response.value;
     });
+    Http.FetchPost("/damerauLevenstein", arg)
+        .then((response) =>
+    {
+        drawDamerauResult(response.value);
+    });
 });
 
 const resultField = document.getElementById("levensteinResult");
 const recursiveResultField = document.getElementById("levensteinRecursiveResult");
 const ruleNode = document.getElementById("rule");
 const HEADER_COLOR = "#3b1513";
+const damerauResultField = document.getElementById("damerauLevensteinResult");
 
 function drawResult(data)
 {
@@ -95,12 +106,10 @@ function conversionRule(textA, textB, data)
 
     while(i > 0 || j > 0)
     {
-        console.log(i + ";" + j);
         let diag = Infinity;
         let left = Infinity;
         let upper = Infinity;
 
-        debugger;
         if(i > 0 && j > 0)
             diag = data[(i-1) + (j-1)*x];
         if(i > 0)
@@ -108,12 +117,10 @@ function conversionRule(textA, textB, data)
         if(j > 0)
             upper = data[i + (j-1)*x];
 
-        console.log(left + "; " + diag+ "; " + upper);
-
         if(diag <= left && diag <= upper)
         {
             if(diag < data[i + j*x])
-                ruleString = 'I' + ruleString;
+                ruleString = 'R' + ruleString;
             else
                 ruleString = 'M' + ruleString;
             i--;j--;
@@ -125,7 +132,7 @@ function conversionRule(textA, textB, data)
         }
         else
         {
-            ruleString = 'R' + ruleString;
+            ruleString = 'I' + ruleString;
             j--;
         }
     }
@@ -156,4 +163,58 @@ function clearNode(node)
 {
     while(node.hasChildNodes())
         node.removeChild(node.firstChild);
+}
+
+function drawDamerauResult(data)
+{
+    let textA = document.getElementById("wordA").value;
+    let textB = document.getElementById("wordB").value;
+    const x = textA.length + 1;
+    const y = textB.length + 1;
+    damerauResultField.innerHTML = data[data.length - 1];
+
+    clearNode(dtable);
+    {
+        let hRow = document.createElement("tr");
+        for (let i = 0; i < 2; i++)
+        {
+            let td = document.createElement("td");
+            td.innerHTML = " ";
+            td.style.borderColor = HEADER_COLOR;
+            hRow.appendChild(td);
+        }
+
+        let _x = x-1;
+        for (let i = 0; i < _x; i++)
+        {
+            let td = document.createElement("td");
+            td.innerHTML = textA[i];
+            td.style.borderColor = HEADER_COLOR;
+            hRow.appendChild(td);
+        }
+        dtable.appendChild(hRow);
+    }
+
+
+    for(let j = 0; j < y; j++)
+    {
+        let row = document.createElement("tr");
+        {
+            let td = document.createElement("td");
+            td.style.borderColor = HEADER_COLOR;
+            row.appendChild(td);
+
+            if(j == 0)
+                td.innerHTML = " ";
+            else
+                td.innerHTML = textB[j-1];
+        }
+        for(let i = 0; i < x; i++)
+        {
+            let td = document.createElement("td");
+            td.innerHTML = data[i + j*x];
+            row.appendChild(td);
+        }
+        dtable.appendChild(row);
+    }
 }

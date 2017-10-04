@@ -7,7 +7,7 @@ body
 .inputContainer
 {
     width: 50%;
-    margin: 5% auto auto auto;
+    margin: 5% auto 5% auto;
     background-color: #537c9b;
     border: 2px solid #1d2d3b;
     text-align: center;
@@ -77,4 +77,13 @@ body
 .match
 {
     color: #0b0e16;
+}
+
+.resultsBlock
+{
+    margin: 10px auto 10px auto;
+    width: 90%;
+    border: 2px solid #1d2d3b;
+    text-align: center;
+    padding: 10px;
 }
