@@ -36,7 +36,7 @@ function damerauLevenstein(wordA, wordB)
         }
     }
 
-    return {value: D};
+    return D;
 }
 
 module.exports.damerauLevenstein = damerauLevenstein;
