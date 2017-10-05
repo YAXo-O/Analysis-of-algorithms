@@ -15,7 +15,8 @@ function damerauLevenstein(wordA, wordB)
         D[j*x] = j;
     for(let j = 1; j < y; j++)
     {
-        for(let i = 1; i < x; i++) {
+        for(let i = 1; i < x; i++)
+        {
             let cost = wordA[i-1] == wordB[j-1] ? 0 : REPLACE_COST;
             D[i + j * x] = Math.min
             (

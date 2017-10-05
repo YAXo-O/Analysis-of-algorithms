@@ -6,6 +6,7 @@ const levenstein = require("./Modules/Levenstein.js");
 const levensteinRecursive = require("./Modules/LevensteinRecursive");
 const damerauLevenstein = require("./Modules/DamerauLevenstein");
 const damerauLevensteinRecursive = require("./Modules/DamerauLevensteinRecursive");
+const test = require("./Modules/test.js");
 
 // Basic Server Setup
 const DATA = path.resolve("./Data/");
@@ -56,6 +57,23 @@ app.post("/damerauLevensteinRecursive", function(req, res)
 
     res.status(201);
     res.json(damerauLevensteinRecursive.damerauLevenstein(wordA, wordB));
+});
+
+app.get("/tests", function(req, res)
+{
+    let tests = DATA + "/tests.html";
+    res.sendFile(tests);
+});
+
+app.get("/testResults", function(req, res)
+{
+    const testRepeat = 10;
+
+    test.setFunctions(levenstein.levensteinDistance, levensteinRecursive.levensteinDistance,
+                      damerauLevenstein.damerauLevenstein, damerauLevensteinRecursive.damerauLevenstein);
+
+    res.status(201);
+    res.json({ten: test.test(10, testRepeat), fifty: test.test(50, testRepeat), hundread: test.test(100, testRepeat)});
 });
 
 app.listen(PORT);

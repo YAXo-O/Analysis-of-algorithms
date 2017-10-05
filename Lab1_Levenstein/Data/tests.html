@@ -1,0 +1,50 @@
+<html>
+<head>
+    <title>Levenstein tests</title>
+    <link href="./CSS/tests.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="tableContainer">
+        Tests
+            <table>
+                <tr>
+                    <td rowspan="2" class="tableHeader redHeader">String length</td>
+                    <td colspan="4" class="tableHeader redHeader">Working time</td>
+                </tr>
+                <tr>
+                    <td class="tableHeader redHeader">Levenstein</td>
+                    <td class="tableHeader redHeader">Levenstein(recursive)</td>
+                    <td class="tableHeader redHeader">Damerau-Levenstein</td>
+                    <td class="tableHeader redHeader">Damerau-Levenstein(recursive)</td>
+                </tr>
+                <tr>
+                    <td class="tableHeader blueHeader">10</td>
+                    <td id="l10"></td>
+                    <td id="lr10"></td>
+                    <td id="d10"></td>
+                    <td id="dr10"></td>
+                </tr>
+                <tr>
+                    <td class="tableHeader blueHeader">50</td>
+                    <td id="l50"></td>
+                    <td id="lr50"></td>
+                    <td id="d50"></td>
+                    <td id="dr50"></td>
+                </tr>
+                <tr>
+                    <td class="tableHeader blueHeader">100</td>
+                    <td id="l100"></td>
+                    <td id="lr100"></td>
+                    <td id="d100"></td>
+                    <td id="dr100"></td>
+                </tr>
+            </table>
+
+            <input type="button" value="Test!" id="doTests">
+        </div>
+
+<script src="./Services/fetches.js"></script>
+<script src="./tests.js"></script>
+</body>
+</html>
