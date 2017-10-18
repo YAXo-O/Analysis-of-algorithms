@@ -4,14 +4,7 @@
 #include <iostream>
 #include "array.h"
 
-// [ 0 1 5 4 6 ]
-//   0 1 2 3 4
-// 2 -> 2 ==>
-// [ 0 1 6 5 4 ]
-//   0 1 2 3 4
-
-// Shifts array rightways starting with array[id] up to array[rightEnd] including
-// Element array[rightEnd] of original array is stored in array[id];
+// Shifts array rightways while searching for place to put array[id]
 template<typename T>
 void shiftRightInplace(Array<T> &array, int id)
 {
