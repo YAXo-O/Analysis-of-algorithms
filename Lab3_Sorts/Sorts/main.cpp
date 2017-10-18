@@ -17,7 +17,7 @@ int main()
 {
     Array<int> a1 = {-10, 10, 8, 7, 1, 4, 3, 11, 2, 1, -8, 4};
     printArray(a1);
-    insertionSort(a1);
+    BSTSort(a1);
     printArray(a1);
 
     return 0;

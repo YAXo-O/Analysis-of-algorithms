@@ -7,4 +7,5 @@ SOURCES += main.cpp
 
 HEADERS += \
     array.h \
-    sorts.h
+    sorts.h \
+    binarysearchtree.h

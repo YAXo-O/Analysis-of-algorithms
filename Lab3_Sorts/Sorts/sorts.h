@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "array.h"
+#include "binarysearchtree.h"
 
 // Shifts array rightways while searching for place to put array[id]
 template<typename T>
@@ -24,5 +25,11 @@ void insertionSort(Array<T> &array)
         shiftRightInplace(array, sortedBorder);
 }
 
+template<typename T>
+void BSTSort(Array<T> &array)
+{
+    BinarySearchTree<T> BST(array);
+    BST.writeToArray(array);
+}
 
 #endif // SORTS_H
