@@ -15,7 +15,7 @@ void printArray(const Array<T> &array)
 
 int main()
 {
-    Array<int> a1 = {10, 8, 7, 1, 4, 3, 11, 2, 1};
+    Array<int> a1 = {-10, 10, 8, 7, 1, 4, 3, 11, 2, 1, -8, 4};
     printArray(a1);
     insertionSort(a1);
     printArray(a1);
