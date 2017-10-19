@@ -15,10 +15,15 @@ void printArray(const Array<T> &array)
 
 int main()
 {
-    Array<int> a1 = {-10, 10, 8, 7, 1, 4, 3, 11, 2, 1, -8, 4};
-    printArray(a1);
-    BSTSort(a1);
-    printArray(a1);
+    uint16_t arr[] = {10, 221, 1, 650, 16};
+    size_t arrLen = sizeof(arr)/2;
+    LSDSort(arr, arrLen);
+
+    std::cout << "[ ";
+    for(size_t i = 0; i < arrLen; i++)
+        std::cout << arr[i] << " ";
+    std::cout << "]" << std::endl;
+
 
     return 0;
 }
