@@ -2,6 +2,7 @@
 #include "array.h"
 #include "sorts.h"
 #include "tests.h"
+#include "avltree.h"
 
 int main()
 {

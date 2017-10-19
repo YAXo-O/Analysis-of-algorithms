@@ -1,6 +1,7 @@
 #ifndef BINARYSEARCHTREE_H
 #define BINARYSEARCHTREE_H
 
+#include <queue>
 #include "array.h"
 
 template<typename T>
@@ -13,6 +14,9 @@ public:
 
     void insertValue(const T &value);
     void writeToArray(Array<T> &ar);
+    void widthWriteToArray(Array<T> &ar);
+
+    void setAllowRepeat(bool bAllow);
 
 private:
     template<typename>
@@ -29,6 +33,8 @@ private:
 
     Node<T> *head;
     size_t arrayId;
+    bool bAllowRepeat = true;
+    size_t widthId;
 
     void _insertValue(const T &value, Node<T> *treeHead);
     void _deleteTree(Node<T> *treeHead);
@@ -38,12 +44,12 @@ private:
 
 
 template<typename T>
-BinarySearchTree<T>::BinarySearchTree(): head(nullptr), arrayId(0)
+BinarySearchTree<T>::BinarySearchTree(): head(nullptr), arrayId(0), widthId(0)
 {
 }
 
 template<typename T>
-BinarySearchTree<T>::BinarySearchTree(const Array<T> &ar): head(nullptr), arrayId(0)
+BinarySearchTree<T>::BinarySearchTree(const Array<T> &ar): head(nullptr), arrayId(0), widthId(0)
 {
     for(auto i : ar)
         insertValue(i);
@@ -92,9 +98,37 @@ void BinarySearchTree<T>::writeToArray(Array<T> &ar)
 }
 
 template<typename T>
+void BinarySearchTree<T>::widthWriteToArray(Array<T> &ar)
+{
+    std::queue<Node<T> *> q;
+    q.push(head);
+    while(!q.empty())
+    {
+        Node<T> *node = q.front();
+        q.pop();
+
+        ar[widthId++] = node->data;
+
+        if(node->leftTree)
+            q.push(node->leftTree);
+        if(node->rightTree)
+            q.push(node->rightTree);
+    }
+}
+
+template<typename T>
+void BinarySearchTree<T>::setAllowRepeat(bool _bAllow)
+{
+    bAllowRepeat = _bAllow;
+}
+
+template<typename T>
 void BinarySearchTree<T>::_insertValue(const T &value, Node<T> *treeHead)
 {
     if(!treeHead)
+        return;
+
+    if(!bAllowRepeat && value == treeHead->data)
         return;
 
     if(value >= treeHead->data)

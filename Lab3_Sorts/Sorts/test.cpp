@@ -84,6 +84,20 @@ void insertionTest(size_t size)
     std::cout << "Worst case scenario: " << time << std::endl;
 }
 
+
+template<typename T>
+void createBalancedTree(BinarySearchTree<T> &tree, T start, T end)
+{
+    if((end - start) <= 1)
+        return;
+
+    T value = (start + end)/2;
+    tree.insertValue(value);
+
+    createBalancedTree(tree, start, (start+end)/2);
+    createBalancedTree(tree, (start+end)/2, end);
+}
+
 void bstTest(size_t size)
 {
     printSep();
@@ -91,11 +105,14 @@ void bstTest(size_t size)
 
     long long int time = 0;
     {
-        Array<int> arr(size);
-        for(size_t i = 0; i < size; i++)
-            arr[i] = i;
         for(unsigned int i = 0; i < repetitions; i++)
+        {
+            BinarySearchTree<int> tree;
+            createBalancedTree(tree, 0, int(size));
+            Array<int> arr(size);
+            tree.widthWriteToArray(arr);
             time += sortTest(arr, BSTSort);
+        }
     }
     printSep(30);
     std::cout << "Best case scenario: " << time << std::endl;
