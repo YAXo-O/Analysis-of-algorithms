@@ -10,5 +10,6 @@ void launchTests();
 // Insertion sort
 void insertionTest(size_t size);
 void bstTest(size_t size);
+void lsdTest(size_t size);
 
 #endif // TESTS_H
