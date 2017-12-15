@@ -2,6 +2,7 @@ const Http = fetches();
 
 const table = createTable(0);
 const dtable = createTable(1);
+let recursiveStart = 0;
 
 const actionButton = document.getElementById("button");
 actionButton.addEventListener("click", function()
@@ -14,9 +15,11 @@ actionButton.addEventListener("click", function()
     {
         drawResult(response, table, resultField, conversionRule, ruleNode);
     });
+    recursiveStart = performance.now();
     Http.FetchPost("/levensteinRecursive", arg)
         .then((response) =>
     {
+        alert("Execution time: " + (performance.now() - recursiveStart));
         recursiveResultField.innerHTML = response.value;
     });
     Http.FetchPost("/damerauLevenstein", arg)

@@ -33,23 +33,23 @@ function test(wordLen, repeats)
         levenstein(wordA, wordB);
         res.levenstein += Date.now();
 
-        res.levensteinRecursive -= Date.now();
-        levensteinRecursive(wordA, wordB);
-        res.levensteinRecursive += Date.now();
+        //res.levensteinRecursive -= Date.now();
+        //levensteinRecursive(wordA, wordB);
+        //res.levensteinRecursive += Date.now();
 
         res.damerauLevenstein -= Date.now();
         damerau(wordA, wordB);
         res.damerauLevenstein += Date.now();
 
-        res.damerauLevensteinRecursive -= Date.now();
-        damerauRecursive(wordA, wordB);
-        res.damerauLevensteinRecursive += Date.now();
+        //res.damerauLevensteinRecursive -= Date.now();
+        //damerauRecursive(wordA, wordB);
+        //res.damerauLevensteinRecursive += Date.now();
     }
 
     res.levenstein /= repeats;
-    res.levensteinRecursive /= repeats;
+    res.levensteinRecursive = "over 9000";
     res.damerauLevenstein /= repeats;
-    res.damerauLevensteinRecursive /= repeats;
+    res.damerauLevensteinRecursive = "over 9000";
 
     return res;
 }

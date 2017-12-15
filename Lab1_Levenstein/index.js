@@ -67,7 +67,7 @@ app.get("/tests", function(req, res)
 
 app.get("/testResults", function(req, res)
 {
-    const testRepeat = 10;
+    const testRepeat = 1000;
 
     test.setFunctions(levenstein.levensteinDistance, levensteinRecursive.levensteinDistance,
                       damerauLevenstein.damerauLevenstein, damerauLevensteinRecursive.damerauLevenstein);

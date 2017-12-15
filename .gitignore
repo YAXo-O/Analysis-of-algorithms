@@ -131,3 +131,5 @@ Thumbs.db
 *.exe
 
 Lab3_Sorts/Sorts/.gitignore
+
+*.db

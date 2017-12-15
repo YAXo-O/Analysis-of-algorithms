@@ -19,18 +19,18 @@ void launchTests()
 
     // Insertion Sort tests
     insertionTest(10);
-    insertionTest(100);
-    insertionTest(1000);
+    for(int i = 100; i <= 1000; i += 100)
+        insertionTest(i);
 
     // BSTree-based sort
     bstTest(10);
-    bstTest(100);
-    bstTest(1000);
+    for(int i = 100; i <= 1000; i+= 100)
+        bstTest(i);
 
     // LSD sort
     lsdTest(10);
-    lsdTest(100);
-    lsdTest(1000);
+    for(int i = 100; i <= 1000; i+= 100)
+        lsdTest(i);
 }
 
 template<typename T>

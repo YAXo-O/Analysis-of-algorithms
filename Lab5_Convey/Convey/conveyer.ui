@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Conveyer</class>
+ <widget class="QWidget" name="Conveyer">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>510</width>
+    <height>470</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QGroupBox" name="conveyerBox">
+     <property name="title">
+      <string>Conveyer</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <widget class="QListWidget" name="conveyerList"/>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="timeLayout">
+        <item>
+         <widget class="QLabel" name="timeLab">
+          <property name="text">
+           <string>Production Time (ms): </string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="timeLine"/>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="productSignLayout">
+        <item>
+         <widget class="QLabel" name="productSignLab">
+          <property name="text">
+           <string>Product Sign: </string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="productSignLine"/>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QLabel" name="stateLab">
+        <property name="text">
+         <string>Inactive</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
