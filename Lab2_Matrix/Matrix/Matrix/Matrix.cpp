@@ -1,5 +1,7 @@
 #include <cstring>
 #include <iostream>
+#include <ctime>
+#include <chrono>
 #include "Matrix.h"
 
 struct winograd_t
@@ -63,23 +65,28 @@ Matrix Matrix::winograd(Matrix &other)// throw(std::invalid_argument)
 
 	Matrix res(other.dimX, dimY);
 	winograd_t win(data, other.data, res.data, dimY, dimX, other.dimX);
-		
-	winogradMasm(&win);
 
-	std::cout << "rowFactor: ";
+	std::clock_t start = clock();
+	winogradMasm(&win);
+	std::cout << "Time: " << difftime(clock(), start) << std::endl;
+
+	/*std::cout << "rowFactor: ";
 	for (int i = 0; i < win.a; i++)
 		std::cout << win.rowFactor[i] << " ";
 	std::cout << std::endl << "colFactor: ";
 	for (int i = 0; i < win.c; i++)
 		std::cout << win.colFactor[i] << " ";
-	std::cout << std::endl;
+	std::cout << std::endl << std::endl;
+	*/
 
+	/*
 	for (int i = 0; i < res.dimX; i++)
 	{
 		for (int j = 0; j < res.dimY; j++)
-			std::cout << res.data[i*dimX + dimY] << " ";
+			std::cout << res.data[i*dimX + j] << " ";
 		std::cout << std::endl;
 	}
+	*/
 
 	return res;
 }
@@ -98,14 +105,25 @@ Matrix Matrix::winogradC(Matrix &other)
 		rowFactor[i] = data[i*dimX] * data[i*dimX + 1];
 		for (int j = 1; j < d; j++)
 			rowFactor[i] += data[i*dimX + 2 * j] * data[i*dimX + 2 * j + 1];
+			
 	}
 
 	for (int i = 0; i < c; i++)
 	{
 		colFactor[i] = other.data[i] * other.data[dimX + i];
 		for (int j = 1; j < d; j++)
-			colFactor[i] += other.data[2 * j*other.dimX + i] * other.data[2*(j + 1)*other.dimX + i];
+			colFactor[i] += other.data[2 * j*other.dimX + i] * other.data[(2 * j + 1)*other.dimX + i];
 	}
+
+	/*
+	std::cout << "rowFactor: ";
+	for (int i = 0; i < a; i++)
+		std::cout << rowFactor[i] << " ";
+	std::cout << std::endl << "colFactor: ";
+	for (int i = 0; i < c; i++)
+		std::cout << colFactor[i] << " ";
+	std::cout << std::endl;
+	*/
 
 	Matrix *res = new Matrix(a, c);
 	for (int i = 0; i < a; i++)
@@ -114,24 +132,27 @@ Matrix Matrix::winogradC(Matrix &other)
 		{
 			res->data[i*res->dimX + j] = -rowFactor[i] - colFactor[j];
 			for (int k = 0; k < d; k++)
-				res->data[i*res->dimX + j] += (data[i*dimX + 2 * k] + other.data[2 * (k + 1)*other.dimX + j])*(data[i*dimX + 2 * (k + 1)] + other.data[2 * k*other.dimX + j]);
+			{
+				int valueLeft = (data[i*dimX + 2*k + 1] + other.data[2*k*other.dimX + j]);
+				int valueRight = (data[i*dimX + 2 * k] + other.data[(2 * k + 1)*other.dimX + j]);
+				res->data[i*res->dimX + j] += valueLeft*valueRight;
+			}
 		}
 	}
 
-	std::cout << "rowFactor: ";
-	for (int i = 0; i < a; i++)
-		std::cout << rowFactor[i] << " ";
-	std::cout << std::endl;
-	std::cout << "colFactor: ";
-	for (int i = 0; i < c; i++)
-		std::cout << colFactor[i] << " ";
-	std::cout << std::endl;
-	for (int i = 0; i < other.dimX; i++)
+	if (b % 2 != 0)
+		for (int i = 0; i < a; i++)
+			for (int j = 0; j < c; j++)
+				res->data[i*res->dimX + j] += data[i*dimX + b - 1] * other.data[(b-1)*other.dimX + j];
+
+	/*
+	for (int i = 0; i < res->dimX; i++)
 	{
-		for (int j = 0; j < other.dimY; j++)
-			std::cout << other.data[i*dimX + j] << " ";
-		std::cout << std::endl;
+		for (int j = 0; j < res->dimY; j++)
+			std::cout << res->data[i*dimX + j] << " ";
+		std::cout << std::endl << std::endl;
 	}
+	*/
 
 	delete[] rowFactor;
 
